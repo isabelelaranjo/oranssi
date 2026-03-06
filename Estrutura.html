@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORANSSI ÓTICAS - Oficial</title>
+    <link rel="stylesheet" href="Estilo.css?v=2">
+</head>
+<body>
+
+    <a href="https://wa.me/5511962629845" class="btn-whatsapp-flutuante" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 35px; height: 35px;">
+    </a>
+
+    <div class="frete-gratis-topo">ADICIONE R$ 399,90 AO CARRINHO PARA TER FRETE GRÁTIS</div>
+
+    <header>
+        <div class="header-content">
+            <div class="menu-mobile-icon" onclick="toggleMobileMenu()">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Hamburger_icon.svg" alt="Menu" width="30">
+            </div>
+
+            <div class="logo" onclick="trocarColecao('GERAL')">ORANSSI<span>ÓTICAS</span></div>
+            
+            <div class="busca-desktop">
+                <input type="text" placeholder="O que você procura hoje?">
+            </div>
+
+            <div class="icones" onclick="abrirCarrinho()">🛒 CARRINHO (<span id="contagem">0</span>)</div>
+        </div>
+        
+        <div class="busca-mobile">
+            <input type="text" placeholder="O que você procura hoje?">
+        </div>
+    </header>
+
+    <div id="side-menu" class="mobile-nav">
+        <div class="side-menu-header">
+            <span>MENU</span>
+            <button onclick="toggleMobileMenu()">✕</button>
+        </div>
+        <ul>
+            <li class="mobile-dropdown">
+                <button onclick="toggleSubMenu('sub-marcas')">MARCAS ▾</button>
+                <ul id="sub-marcas" class="submenu">
+                    <li><a onclick="trocarColecao('VERÃO'); toggleMobileMenu()">RAY-BAN</a></li>
+                    <li><a onclick="trocarColecao('INVERNO'); toggleMobileMenu()">ANA HICKMANN</a></li>
+                    <li><a onclick="trocarColecao('PRIMAVERA'); toggleMobileMenu()">VOGUE</a></li>
+                </ul>
+            </li>
+            <li class="mobile-dropdown">
+                <button onclick="toggleSubMenu('sub-lentes')">LENTES ▾</button>
+                <ul id="sub-lentes" class="submenu">
+                    <li><a onclick="trocarColecao('LENTES_GRAU'); toggleMobileMenu()">Lentes Tradicionais</a></li>
+                    <li><a onclick="trocarColecao('LENTES_ESTETICA'); toggleMobileMenu()">Lentes Estéticas</a></li>
+                </ul>
+            </li>
+            <li><a onclick="mostrarContato(); toggleMobileMenu()">CONTATO</a></li>
+        </ul>
+    </div>
+
+    <nav class="nav-desktop">
+        <ul>
+            <li class="dropdown">
+                <a class="dropbtn">MARCAS ▾</a>
+                <div class="dropdown-content">
+                    <a onclick="trocarColecao('VERÃO')">RAY-BAN</a>
+                    <a onclick="trocarColecao('INVERNO')">ANA HICKMANN</a>
+                    <a onclick="trocarColecao('PRIMAVERA')">VOGUE</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a class="dropbtn">LENTES ▾</a>
+                <div class="dropdown-content">
+                    <a onclick="trocarColecao('LENTES_GRAU')">Lentes Tradicionais</a>
+                    <a onclick="trocarColecao('LENTES_ESTETICA')">Lentes Estéticas</a>
+                </div>
+            </li>
+            <li><a onclick="mostrarContato()">CONTATO</a></li>
+        </ul>
+    </nav>
+
+    <div class="banner" id="banner-principal">
+        <h2 id="titulo-banner">ATITUDE</h2>
+        <p>QUEM PODE, USA ORANSSI</p>
+    </div>
+
+    <section class="secao-conteudo">
+        <div id="vitrine-principal">
+            <h2 id="titulo-colecao" style="margin-bottom: 40px; font-weight: 300; letter-spacing: 3px;">DESTAQUES DA COLEÇÃO</h2>
+            <div class="container-vitrine" id="lista-produtos"></div>
+        </div>
+
+        <div id="secao-contato" style="display: none;">
+            <div class="contato-header">
+                <h2>Contato</h2>
+                <p>Veja o mundo com clareza. Encontre a solução ideal para você!</p>
+            </div>
+            
+            <div class="contato-flex">
+                <div class="central-atendimento">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="30">
+                    <div class="atendimento-texto">
+                        <span>CENTRAL DE ATENDIMENTO</span>
+                        <strong>(11) 96262-9845</strong>
+                    </div>
+                </div>
+
+                <div class="redes-sociais">
+                    <span>SIGA-NOS</span>
+                    <div class="icones-redes">
+                        <a href="#" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram"> @oranssioticas</a>
+                        <a href="#" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" alt="Facebook"> /oranssioticas</a>
+                        <a href="#" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg" alt="TikTok"> @oranssioticas</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="janelaCarrinho" class="modal">
+        <div class="conteudo-modal">
+            <h2 style="color: #ff9800; margin-bottom: 15px;">Meu Carrinho</h2>
+            <div id="lista-itens-carrinho"></div>
+            <div id="status-frete" class="linha-frete"></div>
+            <hr style="margin: 15px 0;">
+            <p><strong>Total: R$ <span id="valor-total">0.00</span></strong></p>
+            <button class="btn-acao btn-laranja" onclick="enviarWhatsApp()">FINALIZAR VIA WHATSAPP</button>
+            <button class="btn-acao btn-preto" onclick="fecharModais()">VOLTAR</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

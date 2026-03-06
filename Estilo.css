@@ -1,0 +1,124 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+body { background-color: #fcfcfc; scroll-behavior: smooth; overflow-x: hidden; }
+
+.frete-gratis-topo { background-color: #e65100; color: white; text-align: center; padding: 8px; font-size: 11px; font-weight: bold; letter-spacing: 1px; }
+
+/* Header Desktop */
+header { background-color: #ff9800; padding: 15px 20px; color: white; }
+.header-content { display: flex; justify-content: space-around; align-items: center; max-width: 1200px; margin: 0 auto; gap: 20px; }
+
+.logo { font-size: 26px; font-weight: 900; font-style: italic; cursor: pointer; white-space: nowrap; }
+.logo span { font-weight: 300; margin-left: 2px; }
+
+.busca-desktop input { padding: 12px; width: 400px; border: none; border-radius: 4px; outline: none; }
+.busca-mobile { display: none; margin-top: 15px; }
+.busca-mobile input { width: 100%; padding: 10px; border-radius: 4px; border: none; }
+
+.icones { font-weight: bold; cursor: pointer; background: rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 4px; white-space: nowrap; }
+
+/* Nav Desktop */
+.nav-desktop { background: white; padding: 15px; border-bottom: 1px solid #eee; position: relative; z-index: 100; }
+.nav-desktop ul { display: flex; justify-content: center; list-style: none; gap: 35px; }
+.nav-desktop a { text-decoration: none; color: #333; font-weight: 700; font-size: 13px; cursor: pointer; letter-spacing: 1px; text-transform: uppercase; }
+
+.dropdown { position: relative; display: inline-block; }
+.dropdown-content { display: none; position: absolute; background-color: white; min-width: 160px; box-shadow: 0px 8px 16px rgba(0,0,0,0.1); z-index: 1; border-radius: 4px; top: 100%; }
+.dropdown-content a { color: #333; padding: 12px 16px; text-decoration: none; display: block; text-align: left; font-size: 12px; }
+.dropdown:hover .dropdown-content { display: block; }
+
+/* Menu Mobile e Hambúrguer */
+.menu-mobile-icon { display: none; cursor: pointer; }
+
+.mobile-nav { 
+    position: fixed; top: 0; left: -100%; width: 80%; height: 100%; 
+    background: white; z-index: 3000; transition: 0.4s; padding: 20px;
+    box-shadow: 5px 0 15px rgba(0,0,0,0.2);
+}
+.mobile-nav.active { left: 0; }
+.side-menu-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ff9800; padding-bottom: 15px; margin-bottom: 20px; font-weight: 900; }
+.side-menu-header button { background: none; border: none; font-size: 24px; cursor: pointer; }
+
+.mobile-nav ul { list-style: none; }
+.mobile-nav li { margin-bottom: 20px; }
+.mobile-nav a, .mobile-nav button { 
+    text-decoration: none; color: #333; font-size: 18px; font-weight: 800; 
+    background: none; border: none; text-align: left; width: 100%; cursor: pointer;
+}
+.submenu { display: none; padding-left: 20px; margin-top: 10px; }
+.submenu li { margin-bottom: 10px; }
+.submenu a { font-size: 14px; color: #666; font-weight: 600; }
+
+/* Banner e Conteúdo */
+#banner-principal { background-size: cover; background-position: center; height: 600px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding-left: 10%; color: white; transition: 0.5s; }
+#banner-principal h2 { font-size: 50px; font-weight: 800; }
+
+.secao-conteudo { padding: 60px 20px; text-align: center; }
+.container-vitrine { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; max-width: 1200px; margin: 0 auto; }
+.card-produto { background: white; padding: 25px; border-radius: 8px; border: 1px solid #eee; width: 280px; }
+.card-produto img { width: 100%; height: 160px; object-fit: contain; }
+
+.btn-vitrine { background-color: #ff9800; color: white; border: none; padding: 12px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; }
+.controle-quantidade { display: flex; align-items: center; justify-content: center; gap: 15px; background-color: #ff9800; border-radius: 4px; padding: 5px; color: white; }
+.btn-qty { background: none; border: none; color: white; font-size: 20px; cursor: pointer; padding: 0 10px; }
+
+/* Contato */
+#secao-contato { max-width: 800px; margin: 40px auto; background: #f9f9f9; padding: 40px; border-radius: 8px; text-align: left; }
+.contato-header { border-left: 5px solid #ff9800; padding-left: 20px; margin-bottom: 30px; }
+.contato-flex { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px; }
+.central-atendimento { display: flex; align-items: center; gap: 20px; padding: 15px; background: white; border-radius: 50px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+.icones-redes a { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #333; margin-bottom: 10px; font-weight: 600; }
+.icones-redes img { width: 30px; }
+
+/* Modal */
+.modal { display: none; position: fixed; z-index: 4000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); }
+.conteudo-modal { background-color: white; margin: 10% auto; padding: 30px; width: 90%; max-width: 420px; border-radius: 12px; text-align: center; }
+.btn-acao { padding: 12px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 10px; }
+.btn-laranja { background: #ff9800; color: white; }
+.btn-preto { background: #212121; color: white; }
+
+.btn-whatsapp-flutuante { position: fixed; bottom: 20px; right: 20px; background-color: #25d366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2000; box-shadow: 2px 4px 10px rgba(0,0,0,0.2); }
+
+/* --- RESPONSIVIDADE CELULAR --- */
+@media (max-width: 768px) {
+    .menu-mobile-icon { display: block; }
+    .nav-desktop, .busca-desktop { display: none; }
+    .busca-mobile { display: block; }
+    
+    header { padding: 15px; }
+    .header-content { justify-content: space-between; gap: 10px; }
+    
+    .logo { font-size: 18px; }
+    .icones { font-size: 12px; padding: 8px 12px; }
+    
+    #banner-principal { height: 350px; padding-left: 0; align-items: center; text-align: center; }
+    #banner-principal h2 { font-size: 30px; }
+    
+    .card-produto { width: 100%; }
+    .contato-flex { flex-direction: column; text-align: center; }
+}
+/* FORÇAR MUDANÇA NO CELULAR */
+@media screen and (max-width: 768px) {
+    /* Esconde o menu de texto do computador */
+    .nav-desktop, .busca-desktop { 
+        display: none !important; 
+    }
+
+    /* Força o ícone do menu hambúrguer a aparecer */
+    .menu-mobile-icon { 
+        display: block !important; 
+        visibility: visible !important;
+    }
+
+    /* Ajusta o topo para ficar em uma linha só como a Carol */
+    .header-content { 
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+    }
+
+    /* Garante que a busca de celular apareça embaixo */
+    .busca-mobile { 
+        display: block !important; 
+    }
+}
