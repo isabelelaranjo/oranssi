@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ORANSSI ÓTICAS - Oficial</title>
+    <title>ÓTICAS ORANSSI - Oficial</title>
     <link rel="stylesheet" href="Estilo.css?v=2">
 </head>
 <body>
@@ -20,17 +20,31 @@
                 <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Hamburger_icon.svg" alt="Menu" width="30">
             </div>
 
-            <div class="logo" onclick="trocarColecao('GERAL')">ORANSSI<span>ÓTICAS</span></div>
+            <div class="logo" onclick="trocarColecao('GERAL')">
+                <span class="logo-light">ORANSSI</span>
+                <span class="divisor">|</span>
+                <span class="logo-bold">ÓTICAS</span>
+            </div>
             
             <div class="busca-desktop">
-                <input type="text" placeholder="O que você procura hoje?">
+                <div class="search-container">
+                    <input type="text" id="input-pc" placeholder="O que você procura hoje?" 
+                           oninput="realizarBusca(this.value, false)" 
+                           onkeydown="if(event.key === 'Enter') realizarBusca(this.value, true)">
+                    <span class="lupa-icon" onclick="realizarBusca(document.getElementById('input-pc').value, true)"></span>
+                </div>
             </div>
 
             <div class="icones" onclick="abrirCarrinho()">🛒 CARRINHO (<span id="contagem">0</span>)</div>
         </div>
         
         <div class="busca-mobile">
-            <input type="text" placeholder="O que você procura hoje?">
+            <div class="search-container">
+                <input type="text" id="input-mobile" placeholder="O que você procura hoje?" 
+                       oninput="realizarBusca(this.value, false)" 
+                       onkeydown="if(event.key === 'Enter') realizarBusca(this.value, true)">
+                <span class="lupa-icon" onclick="realizarBusca(document.getElementById('input-mobile').value, true)"></span>
+            </div>
         </div>
     </header>
 
@@ -81,8 +95,8 @@
     </nav>
 
     <div class="banner" id="banner-principal">
-        <h2 id="titulo-banner">ATITUDE</h2>
-        <p>QUEM PODE, USA ORANSSI</p>
+        <h2 id="titulo-banner">ORANSSI</h2>
+        <p>Onde seu estilo encontra o foco.</p>
     </div>
 
     <section class="secao-conteudo">
@@ -94,9 +108,8 @@
         <div id="secao-contato" style="display: none;">
             <div class="contato-header">
                 <h2>Contato</h2>
-                <p>Veja o mundo com clareza. Encontre a solução ideal para você!</p>
+                <p>Veja o mundo de uma outra forma. Veja Oranssi!</p>
             </div>
-            
             <div class="contato-flex">
                 <div class="central-atendimento">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="30">
@@ -105,7 +118,6 @@
                         <strong>(11) 96262-9845</strong>
                     </div>
                 </div>
-
                 <div class="redes-sociais">
                     <span>SIGA-NOS</span>
                     <div class="icones-redes">
