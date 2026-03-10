@@ -3,7 +3,7 @@
  * Define os títulos e as imagens de banner para cada categoria do site.
  */
 const configColecoes = {
-    'VERÃO': { titulo: 'COLEÇÃO RAY-BAN', banner: 'https://media.ray-ban.com/cms/resource/image/1561062/landscape_ratio144x65/2592/1170/4a0666aa6639e8aa251feca0b58e2f1f/81838FA01E24C4EC87319B7AF4D89FE0/81838FA01E24C4EC87319B7AF4D89FE0/rbm-jupiter-pdp-d.jpg' },
+    'VERÃO': { titulo: 'COLEÇÃO RAY-BAN', banner: 'https://media.ray-ban.com/cms/resource/image/1561062/landscape_ratio144x65/2592/1170/4a0666aa6639e8aa251feca0b58e2f1f/81838FA01E24C4EC87319B7AF4D89FE0/rbm-jupiter-pdp-d.jpg' },
     'INVERNO': { titulo: 'COLEÇÃO ANA HICKMANN', banner: 'https://anba.com.br/wp-content/uploads/2018/08/ana-hickmann-eyewear2.jpg' },
     'PRIMAVERA': { titulo: 'COLEÇÃO VOGUE', banner: 'https://media.vogue-eyewear.com/2025/09_BRASIL_SASHA/D_Hero.jpg' },
     'LENTES_GRAU': { titulo: 'PRATICIDADE', banner: 'https://olhardigital.com.br/wp-content/uploads/2020/09/20200914123501.jpg' },
@@ -308,3 +308,4 @@ function realizarBusca(termo, forcarRolagem = false) {
         }
     }
 }
+
