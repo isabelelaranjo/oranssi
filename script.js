@@ -3,7 +3,7 @@
  * Define os títulos e as imagens de banner para cada categoria do site.
  */
 const configColecoes = {
-    'VERÃO': { titulo: 'COLEÇÃO RAY-BAN', banner: 'https://media.ray-ban.com/cms/resource/image/1561062/landscape_ratio144x65/2592/1170/4a0666aa6639e8aa251feca0b58e2f1f/81838FA01E24C4EC87319B7AF4D89FE0/rbm-jupiter-pdp-d.jpg' },
+    'VERÃO': { titulo: 'COLEÇÃO RAY-BAN', banner: 'https://media.ray-ban.com/cms/resource/image/1561062/landscape_ratio144x65/2592/1170/4a0666aa6639e8aa251feca0b58e2f1f/81838FA01E24C4EC87319B7AF4D89FE0/81838FA01E24C4EC87319B7AF4D89FE0/rbm-jupiter-pdp-d.jpg' },
     'INVERNO': { titulo: 'COLEÇÃO ANA HICKMANN', banner: 'https://anba.com.br/wp-content/uploads/2018/08/ana-hickmann-eyewear2.jpg' },
     'PRIMAVERA': { titulo: 'COLEÇÃO VOGUE', banner: 'https://media.vogue-eyewear.com/2025/09_BRASIL_SASHA/D_Hero.jpg' },
     'LENTES_GRAU': { titulo: 'PRATICIDADE', banner: 'https://olhardigital.com.br/wp-content/uploads/2020/09/20200914123501.jpg' },
@@ -44,7 +44,7 @@ const produtosData = {
         { id: 20, nome: 'Lente ZEISS Vision', preco: 150.00, img: 'https://oculosja.com/upload/produto/imagem/36aa42174bd4a99fcf3bd3b31270f9c7.webp' },
     ],
     'LENTES_ESTETICA': [
-        { id: 30, nome: 'Lente Mel Natural', preco: 210.00, img: 'https://images.tcdn.com.br/img/img_prod/1148725/natural_colors_mel_anual_com_1_unidade_257_1_ea22f590e335cdbc21a412f2d55859b7.jpg' },
+        { id: 30, nome: 'Lente Natural Colorida', preco: 210.00, img: 'https://lensnet.com.br/cdn/shop/products/OptimaNaturalLookAnual.webp?v=1740678460' },
     ],
     'GERAL': [
         { id: 1, nome: 'Aviador Premium', preco: 499.9, img: 'https://http2.mlstatic.com/D_Q_NP_2X_655225-CBT92881727500_092025-P.webp' },
@@ -87,15 +87,65 @@ function trocarColecao(nome) {
     
     (produtosData[nome] || produtosData['GERAL']).forEach(p => {
         const q = carrinho[p.id] ? carrinho[p.id].qtd : 0;
+        
+        // NOVIDADE: Adiciona campos de personalização dependendo da categoria
+        let htmlOpcoes = "";
+        if (nome === 'LENTES_GRAU') {
+            htmlOpcoes = `
+                <div class="seletores-lente" style="display: flex; gap: 5px; margin-bottom: 10px;">
+                    <select id="od-${p.id}" style="width: 50%; padding: 5px; font-size: 11px;">
+                        <option value="">Grau OD</option>
+                        <option value="0.00">0.00</option>
+                        <option value="1.00">1.00</option>
+                        <option value="2.00">2.00</option>
+                    </select>
+                    <select id="oe-${p.id}" style="width: 50%; padding: 5px; font-size: 11px;">
+                        <option value="">Grau OE</option>
+                        <option value="0.00">0.00</option>
+                        <option value="1.00">1.00</option>
+                        <option value="2.00">2.00</option>
+                    </select>
+                </div>`;
+        } else if (nome === 'LENTES_ESTETICA') {
+            htmlOpcoes = `
+                <div class="seletores-lente" style="margin-bottom: 10px;">
+                    <select id="cor-${p.id}" style="width: 100%; padding: 5px; font-size: 11px;">
+                        <option value="Azul">Azul</option>
+                        <option value="Verde">Verde</option>
+                        <option value="Mel">Mel</option>
+                    </select>
+                </div>`;
+        }
+
         // Lógica de botão: mostra 'Adicionar' ou os controles de +/- se já houver no carrinho
         const btn = q > 0 ? `<div class="controle-quantidade"><button class="btn-qty" onclick="add(${p.id},'${p.nome}',${p.preco},-1,'${nome}')">-</button><span>${q}</span><button class="btn-qty" onclick="add(${p.id},'${p.nome}',${p.preco},1,'${nome}')">+</button></div>` : `<button class="btn-vitrine" onclick="add(${p.id},'${p.nome}',${p.preco},1,'${nome}')">ADICIONAR</button>`;
-        lista.innerHTML += `<div class="card-produto"><img src="${p.img}"><h3>${p.nome}</h3><p>R$ ${p.preco.toFixed(2)}</p><div>${btn}</div></div>`;
+        
+        lista.innerHTML += `
+            <div class="card-produto">
+                <img src="${p.img}">
+                <h3>${p.nome}</h3>
+                <p style="margin-bottom: 10px;">R$ ${p.preco.toFixed(2)}</p>
+                ${htmlOpcoes}
+                <div>${btn}</div>
+            </div>`;
     });
 }
 
 // Adiciona ou remove itens do carrinho e atualiza os valores totais
 function add(id, n, p, m, col) {
-    if(!carrinho[id]) carrinho[id] = {n, p, qtd: 0};
+    if(!carrinho[id]) {
+        let espec = "";
+        // Captura o grau ou cor no momento da adição
+        const od = document.getElementById(`od-${id}`);
+        const oe = document.getElementById(`oe-${id}`);
+        const cor = document.getElementById(`cor-${id}`);
+
+        if(od && oe) espec = ` (OD: ${od.value || 'N/I'} | OE: ${oe.value || 'N/I'})`;
+        else if(cor) espec = ` (Cor: ${cor.value})`;
+
+        carrinho[id] = {n: n + espec, p, qtd: 0};
+    }
+    
     carrinho[id].qtd += m; 
     
     if(carrinho[id].qtd <= 0) delete carrinho[id]; // Remove o item se a quantidade chegar a zero
@@ -126,7 +176,7 @@ function abrirCarrinho() {
     l.innerHTML = totalQtd === 0 ? "<p>Vazio</p>" : "";
     
     for(let i in carrinho) { 
-        l.innerHTML += `<div class="item-carrinho"><span>${carrinho[i].n} (x${carrinho[i].qtd})</span><strong>R$ ${(carrinho[i].qtd * carrinho[i].p).toFixed(2)}</strong></div>`; 
+        l.innerHTML += `<div class="item-carrinho" style="text-align: left; font-size: 13px; margin-bottom: 8px;"><span>${carrinho[i].n} (x${carrinho[i].qtd})</span><br><strong>R$ ${(carrinho[i].qtd * carrinho[i].p).toFixed(2)}</strong></div>`; 
     }
     
     // Lógica da regra de negócio: Frete Grátis acima de R$ 399.90
@@ -214,8 +264,12 @@ function realizarBusca(termo, forcarRolagem = false) {
     document.getElementById('secao-contato').style.display = "none";
     document.getElementById('vitrine-principal').style.display = "block";
 
+    // ROLAGEM CONTROLADA: Só move a tela se o usuário confirmar (Enter ou Lupa)
     if (forcarRolagem) {
-        window.scrollTo({ top: 450, behavior: 'smooth' });
+        window.scrollTo({
+            top: 450, 
+            behavior: 'smooth' 
+        });
     }
 
     let encontrados = false;
@@ -231,6 +285,7 @@ function realizarBusca(termo, forcarRolagem = false) {
                 encontrados = true;
                 const q = carrinho[p.id] ? carrinho[p.id].qtd : 0;
                 const btn = q > 0 ? `<div class="controle-quantidade"><button class="btn-qty" onclick="add(${p.id},'${p.nome}',${p.preco},-1,'GERAL')">-</button><span>${q}</span><button class="btn-qty" onclick="add(${p.id},'${p.nome}',${p.preco},1,'GERAL')">+</button></div>` : `<button class="btn-vitrine" onclick="add(${p.id},'${p.nome}',${p.preco},1,'GERAL')">ADICIONAR</button>`;
+                
                 lista.innerHTML += `<div class="card-produto"><img src="${p.img}"><h3>${p.nome}</h3><p>R$ ${p.preco.toFixed(2)}</p><div>${btn}</div></div>`;
             }
 
