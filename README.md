@@ -1,3 +1,6 @@
+## Site criado para teste
+- Este projeto foi iniciado e concluído exclusivamente para fins de praticar lógica de programação.
+
 ## Funcionalidades Técnicas
 - **Fuzzy Search (Busca por Aproximação):** Implementação do algoritmo de *Levenshtein* em JavaScript para sugerir correções de digitação (ex: encontrar "Ray-Ban" se o usuário digitar "Raiban").
 - **Persistência de Dados de Lentes:** Seleção dinâmica de grau (OD/OE) e cor para lentes de contato, com captura de especificações para o checkout.
